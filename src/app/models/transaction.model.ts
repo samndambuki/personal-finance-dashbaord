@@ -1,8 +1,8 @@
 export interface Transaction {
-  id: number;
+  id?: number;
   description: string;
   amount: number;
-  type: 'income' | 'expense';
+  type: string;
   category: string;
   date: string;
 }
