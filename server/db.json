@@ -1,0 +1,24 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Salary",
+      "amount": 2000,
+      "type": "income",
+      "category": "Work",
+      "date": "2025-05-01"
+    },
+    {
+      "id": 2,
+      "description": "Groceries",
+      "amount": -150,
+      "type": "expense",
+      "category": "Food",
+      "date": "2025-05-02"
+    }
+  ],
+  "budgets": [
+    { "id": 1, "category": "Food", "amount": 500, "month": "2025-05" },
+    { "id": 2, "category": "Entertainment", "amount": 200, "month": "2025-05" }
+  ]
+}

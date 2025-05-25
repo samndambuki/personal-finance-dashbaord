@@ -9,6 +9,15 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "es": {
+            "translation": "src/locale/messages.es.xlf",
+            "baseHref": "/es/"
+          }
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -16,9 +25,7 @@
             "outputPath": "dist/finance-dashboard",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -27,9 +34,15 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -51,6 +64,24 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "en": {
+              "outputPath": "dist/finance-dashboard/en",
+              "localize": ["en"],
+              "baseHref": "/",
+              "optimization": true,
+              "extractLicenses": false,
+              "sourceMap": false,
+              "outputHashing": "all"
+            },
+            "es": {
+              "outputPath": "dist/finance-dashboard/es",
+              "localize": ["es"],
+              "baseHref": "/es/",
+              "optimization": true,
+              "extractLicenses": false,
+              "sourceMap": false,
+              "outputHashing": "all"
             }
           },
           "defaultConfiguration": "production"
@@ -63,20 +94,26 @@
             },
             "development": {
               "buildTarget": "finance-dashboard:build:development"
+            },
+            "en": {
+              "buildTarget": "finance-dashboard:build:en"
+            },
+            "es": {
+              "buildTarget": "finance-dashboard:build:es"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "finance-dashboard:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
@@ -85,6 +122,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -92,5 +130,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "6fba15e9-ec81-4a0d-999a-602745b1e7cb"
   }
 }

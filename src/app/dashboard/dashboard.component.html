@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <span i18n="@@app.title">Personal Finance Dashboard</span>
+  <button mat-button (click)="changeLanguage('en')">English</button>
+  <button mat-button (click)="changeLanguage('es')">Español</button>
+</mat-toolbar>
+<div class="container">
+  <app-transaction-form></app-transaction-form>
+  @defer(on viewport){
+  <app-budget-overview></app-budget-overview>
+  }@placeholder {
+  <div>Loading budget overview</div>
+  }
+  <app-transaction-list></app-transaction-list>
+</div>
